@@ -1,3 +1,46 @@
+<?php
+
+$letters = 'abcdefghijklmnopqrstuvyxz';
+$symbols = '*/-=+?!^%&);{<>|.,:[}]';
+$passLength = intval($_GET['passLength'] ?? false);
+// var_dump($_GET);
+// echo gettype($passLength);
+
+function generatePassword($passLength, $letters, $symbols)
+{
+  $password = '';
+
+  while (strlen($password) !== $passLength) {
+    $indexLetter = rand(0, 24);
+    $indexLetterUpper = rand(0, 24);
+    $indexSymbol = rand(0, 22);
+    $randomNumber = rand(0, 9);
+
+    if (strlen($password) !== $passLength) {
+      $password .= $letters[$indexLetter];
+    }
+
+    if (strlen($password) !== $passLength) {
+      $password .= $randomNumber;
+    }
+
+    if (strlen($password) !== $passLength) {
+      $password .= strtoupper($letters[$indexLetterUpper]);
+    }
+
+    if (strlen($password) !== $passLength) {
+      $password .= $symbols[$indexSymbol];
+    }
+  }
+
+  return $password;
+}
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +61,19 @@
   </div>
 
   <div class="container w-50 p-3 rounded mb-3" style="background-color: rgb(207, 244, 252); color: rgb(82, 141, 169);">
-    <p class="m-0">Nessun parametro valido inserito</p>
+    <p class="m-0">
+      <?php
+
+      if (isset($_GET['passLength'])) {
+        echo generatePassword($passLength, $letters, $symbols);
+      } else {
+      ?>
+        Nessuna password generata
+      <?php
+      }
+
+      ?>
+    </p>
   </div>
 
   <div class="container w-50 p-3 rounded" style="background-color: white">
@@ -30,7 +85,7 @@
         </div>
 
         <div class="col-5">
-          <input class="w-50" type="number" name="passLenght">
+          <input class="w-50" type="number" name="passLength">
         </div>
       </div>
 
