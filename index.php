@@ -9,7 +9,36 @@
   <title>Strong Password Generator</title>
 </head>
 
-<body>
+<body style="background-color: rgb(0, 22, 50);">
+
+  <div class="container text-center pt-5">
+    <h1 style="color: rgb(128, 139, 153)">Strong Password Generator</h1>
+
+    <h2 style="color: white">Genera una password sicura</h2>
+  </div>
+
+  <div class="container w-50 p-3 rounded mb-3" style="background-color: rgb(207, 244, 252); color: rgb(82, 141, 169);">
+    <p class="m-0">Nessun parametro valido inserito</p>
+  </div>
+
+  <div class="container w-50 p-3 rounded" style="background-color: white">
+    <form action="" method="get">
+      <div class="row">
+
+        <div class="col-7">
+          <span>Lunghezza password: </span>
+        </div>
+
+        <div class="col-5">
+          <input class="w-50" type="number" name="passLenght">
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-3">Invia</button>
+
+    </form>
+
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
