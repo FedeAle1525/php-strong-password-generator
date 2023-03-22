@@ -1,10 +1,16 @@
 <?php
 
-$passLength = intval($_GET['passLength'] ?? false);
+// $passLength = intval($_GET['passLength']) ?? false;
+$passLength = isset($_GET['passLength']) ? intval($_GET['passLength']) : null;
 // var_dump($_GET);
 // echo gettype($passLength);
 
 require_once __DIR__ . "/./functions.php";
+
+// Meglio fare controlli prima di richiamare funzione in HTML
+// if ($passLength !== null && is_numeric($passLength)){
+//   $password = generatePassword($passLength, $letters, $symbols);
+// }
 
 ?>
 
@@ -35,7 +41,7 @@ require_once __DIR__ . "/./functions.php";
       <?php
 
       if (isset($_GET['passLength'])) {
-        echo generatePassword($passLength, $letters, $symbols);
+        echo generatePasswordSimple($passLength);
       } else {
       ?>
         Nessuna password generata

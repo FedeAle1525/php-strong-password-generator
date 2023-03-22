@@ -2,15 +2,16 @@
 
 $letters = 'abcdefghijklmnopqrstuvyxz';
 $symbols = '*/-=+?!^%&);{<>|.,:[}]';
+$numbers = '0123456789';
 
 function generatePassword($passLength, $letters, $symbols)
 {
   $password = '';
 
   while (strlen($password) !== $passLength) {
-    $indexLetter = rand(0, 24);
-    $indexLetterUpper = rand(0, 24);
-    $indexSymbol = rand(0, 22);
+    $indexLetter = rand(0, strlen($letters) - 1);
+    $indexLetterUpper = rand(0, strlen($letters) - 1);
+    $indexSymbol = rand(0, strlen($symbols) - 1);
     $randomNumber = rand(0, 9);
 
     if (strlen($password) !== $passLength) {
@@ -28,6 +29,30 @@ function generatePassword($passLength, $letters, $symbols)
     if (strlen($password) !== $passLength) {
       $password .= $symbols[$indexSymbol];
     }
+  }
+
+  return str_shuffle($password);
+}
+
+
+function generatePasswordSimple($passLength)
+{
+
+  $letters = 'abcdefghijklmnopqrstuvyxz';
+  $symbols = '*/-=+?!^%&);{<>|.,:[}]';
+  $numbers = '0123456789';
+
+  $chars = $letters;
+  $chars .= strtoupper($letters);
+  $chars .= $symbols;
+  $chars .= $numbers;
+
+  $password = '';
+
+  while (strlen($password) !== $passLength) {
+    $indexRandom = rand(0, strlen($chars) - 1);
+
+    $password .= $chars[$indexRandom];
   }
 
   return $password;
